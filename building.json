@@ -1,0 +1,138 @@
+{
+  "building": "Smart Escape Sample",
+  "nodes": [
+    {
+      "id": "R1",
+      "label": "R1",
+      "type": "room",
+      "coordinates": {
+        "x": 80,
+        "y": 80
+      }
+    },
+    {
+      "id": "R2",
+      "label": "R2",
+      "type": "room",
+      "coordinates": {
+        "x": 80,
+        "y": 220
+      }
+    },
+    {
+      "id": "C1",
+      "label": "C1",
+      "type": "junction",
+      "coordinates": {
+        "x": 220,
+        "y": 80
+      }
+    },
+    {
+      "id": "C2",
+      "label": "C2",
+      "type": "junction",
+      "coordinates": {
+        "x": 360,
+        "y": 80
+      }
+    },
+    {
+      "id": "C3",
+      "label": "C3",
+      "type": "junction",
+      "coordinates": {
+        "x": 220,
+        "y": 220
+      }
+    },
+    {
+      "id": "C4",
+      "label": "C4",
+      "type": "junction",
+      "coordinates": {
+        "x": 360,
+        "y": 220
+      }
+    },
+    {
+      "id": "E1",
+      "label": "E1",
+      "type": "exit",
+      "coordinates": {
+        "x": 500,
+        "y": 80
+      }
+    },
+    {
+      "id": "E2",
+      "label": "E2",
+      "type": "exit",
+      "coordinates": {
+        "x": 500,
+        "y": 220
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "from": "R1",
+      "to": "C1",
+      "cost": 2
+    },
+    {
+      "id": "e2",
+      "from": "C1",
+      "to": "C2",
+      "cost": 2
+    },
+    {
+      "id": "e3",
+      "from": "C2",
+      "to": "E1",
+      "cost": 3
+    },
+    {
+      "id": "e4",
+      "from": "R1",
+      "to": "R2",
+      "cost": 2
+    },
+    {
+      "id": "e5",
+      "from": "R2",
+      "to": "C3",
+      "cost": 2
+    },
+    {
+      "id": "e6",
+      "from": "C1",
+      "to": "C3",
+      "cost": 2
+    },
+    {
+      "id": "e7",
+      "from": "C2",
+      "to": "C4",
+      "cost": 2
+    },
+    {
+      "id": "e8",
+      "from": "C3",
+      "to": "C4",
+      "cost": 3
+    },
+    {
+      "id": "e9",
+      "from": "C4",
+      "to": "E2",
+      "cost": 4
+    }
+  ],
+  "initial_state": {
+    "blocked_nodes": [],
+    "blocked_edges": [],
+    "closed_exits": []
+  }
+}

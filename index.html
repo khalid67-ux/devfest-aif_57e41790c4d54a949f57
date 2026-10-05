@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0f172a" />
+  <title>Smart Escape — Evacuation Route Simulator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">↗</div>
+      <div>
+        <div class="eyebrow">AI DEVFEST 2026 · PRACTICE CHALLENGE</div>
+        <h1>Smart Escape</h1>
+        <p id="subtitle">Interactive Evacuation Route Simulator</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <span id="datasetBadge" class="top-badge">No dataset</span>
+      <button id="langBtn" class="icon-btn" type="button">বাংলা</button>
+      <button id="resetBtn" class="icon-btn" type="button">Reset</button>
+      <label class="primary-btn file-btn">
+        <input id="fileInput" type="file" accept=".json,application/json" />
+        <span id="importText">Import JSON</span>
+      </label>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar">
+      <section class="panel start-panel">
+        <div class="panel-heading">
+          <div>
+            <span class="overline" id="buildingLabel">BUILDING</span>
+            <h2 id="buildingName">Sample Building</h2>
+          </div>
+          <span class="building-icon">⌂</span>
+        </div>
+
+        <label for="startSelect" id="startLabel">Starting location</label>
+        <div class="select-wrap">
+          <select id="startSelect" aria-label="Starting location"></select>
+        </div>
+        <div id="startHint" class="hint">Select an unblocked room or junction.</div>
+      </section>
+
+      <section class="panel route-panel">
+        <div class="panel-title-row">
+          <h2 id="routeTitle">Route result</h2>
+          <span id="routeStatusDot" class="status-dot"></span>
+        </div>
+        <div id="status" class="status neutral">Load a building to begin.</div>
+
+        <div class="route-summary">
+          <div class="metric">
+            <span id="exitLabel">EXIT</span>
+            <strong id="routeExit">—</strong>
+          </div>
+          <div class="metric">
+            <span id="costLabel">TOTAL COST</span>
+            <strong id="routeCost">—</strong>
+          </div>
+        </div>
+
+        <div class="path-card">
+          <div class="path-header"><span id="pathLabel">PATH</span><span id="pathCount">0 stops</span></div>
+          <div id="routePath" class="path-value">—</div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-title-row">
+          <h2 id="hazardTitle">Hazards</h2>
+          <span class="mini-label">LIVE</span>
+        </div>
+        <p class="hint" id="hazardHint">Click a room/junction/exit or corridor to toggle its hazard state.</p>
+        <div class="legend">
+          <div><span class="legend-dot room"></span><span id="roomText">Room</span></div>
+          <div><span class="legend-dot junction"></span><span id="junctionText">Junction</span></div>
+          <div><span class="legend-dot exit"></span><span id="exitText">Open exit</span></div>
+          <div><span class="legend-dot blocked"></span><span id="blockedText">Blocked / closed</span></div>
+          <div class="legend-wide"><span class="legend-line route-line"></span><span id="routeText">Selected route</span></div>
+        </div>
+      </section>
+
+      <section class="panel compact">
+        <div class="stat-grid">
+          <div><span id="nodesStat">Nodes</span><strong id="nodeCount">0</strong></div>
+          <div><span id="edgesStat">Corridors</span><strong id="edgeCount">0</strong></div>
+          <div><span id="blockedStat">Blocked</span><strong id="blockedCount">0</strong></div>
+          <div><span id="closedStat">Closed exits</span><strong id="closedCount">0</strong></div>
+        </div>
+      </section>
+    </aside>
+
+    <section class="map-panel">
+      <div class="map-toolbar">
+        <div class="toolbar-title">
+          <div class="live-indicator"><span></span><span id="mapTitle">Building map</span></div>
+          <span id="mapHint">Costs are edge weights; coordinates only control display position.</span>
+        </div>
+        <div class="toolbar-actions">
+          <button id="zoomOutBtn" class="map-btn" type="button" aria-label="Zoom out">−</button>
+          <button id="zoomResetBtn" class="map-btn map-reset" type="button">100%</button>
+          <button id="zoomInBtn" class="map-btn" type="button" aria-label="Zoom in">+</button>
+          <button id="sampleBtn" class="secondary-btn" type="button">Load sample</button>
+        </div>
+      </div>
+
+      <div id="mapWrap" class="map-wrap">
+        <svg id="map" role="img" aria-label="Building map"></svg>
+        <div class="map-grid" aria-hidden="true"></div>
+        <div id="emptyState" class="empty-state">
+          <div class="empty-icon">⌁</div>
+          <h2 id="emptyTitle">Import building.json</h2>
+          <p id="emptyText">Use Import JSON, or load the supplied sample to test the simulator.</p>
+          <button id="emptySampleBtn" class="primary-btn empty-action" type="button">Load sample</button>
+        </div>
+        <div class="map-help" id="mapHelp">Click nodes or corridors to change hazards</div>
+      </div>
+
+      <div class="map-footer">
+        <span id="interactionHint">Node: block/unblock · Corridor: block/unblock · Exit: close/reopen</span>
+        <span class="footer-note">Frontend-only · No external routing API</span>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
